@@ -295,7 +295,7 @@ h2 {
 }
 
 /* Tablet Vertical */
-@media screen and (min-width: 700px) and (max-width: 921px) {
+@media screen and (min-width: 700px) and (max-width: 821px) {
   nav ul {
     font-size: 2rem !important;
   }
@@ -393,9 +393,9 @@ h2 {
   }
 
   /* section 5 */
-.wave > svg {
-  border-bottom: 20px solid transparent;
-}
+  .wave > svg {
+    border-bottom: 20px solid transparent;
+  }
 
   .footer {
     bottom: 10px;
