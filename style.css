@@ -299,13 +299,15 @@ h2 {
   nav ul {
     font-size: 2rem !important;
   }
+  
   /* Section 2 */
   .main-image {
     height: auto;
     width: 85%;
+    top: -35%;
     border-width: 5px;
     padding: 10px;
-    top: -35%;
+   
   }
 
   /* Section 3 */
@@ -347,6 +349,7 @@ h2 {
 
 /* Smartphone Vertical */
 @media screen and (max-width: 600px) {
+ 
   nav ul {
     position: relative;
     left: -20px;
