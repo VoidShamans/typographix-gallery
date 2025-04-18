@@ -1,59 +1,25 @@
-const themeSwitcher = document.getElementById("theme-switcher");
+// Function to check if page is scrolled and adjust the logo size
+function checkScroll() {
+  const navbar = document.getElementById("navbar");
+  const logo = document.getElementById("logo");
+  let scrollPosition = window.scrollY;
 
-// Dark Mode Styles
-function darkMode() {
-  themeSwitcher.children[0].textContent = "Dark Mode";
-  themeSwitcher.children[1].classList.replace("fa-sun", "fa-moon");
-}
-
-// Light Mode Styles
-function lightMode() {
-  themeSwitcher.children[0].textContent = "Light Mode";
-  themeSwitcher.children[1].classList.replace("fa-moon", "fa-sun");
-}
-
-// Switch Theme
-function switchTheme() {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  if (!currentTheme || currentTheme === "light") {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark");
-    darkMode();
+  // Add/remove 'scrolled' class based on scroll position
+  if (scrollPosition > 20) {
+    navbar.classList.add("scrolled");
   } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light");
-    lightMode();
+    navbar.classList.remove("scrolled");
   }
+
+  // Calculate new font size based on scoll position
+  let newSize = 3 - scrollPosition * 0.03; //Decrease by 0.03 rem for every 1px scrolled
+
+  // Clamping the font size between 1.5rem and 3 rem
+  newSize = Math.max(1.5, newSize);
+  newSize = Math.min(3, newSize);
+
+  logo.style.fontSize = newSize + "rem";
 }
 
-// Event Listener
-themeSwitcher.addEventListener("click", switchTheme);
-
-// Check Local Storage For Theme
-const currentThemeFromLocalStorage = localStorage.getItem("theme");
-if (currentThemeFromLocalStorage) {
-  document.documentElement.setAttribute(
-    "data-theme",
-    currentThemeFromLocalStorage
-  );
-  if (currentThemeFromLocalStorage === "dark") {
-    darkMode();
-  } else {
-    lightMode();
-  }
-}
-
-// Navigation
-
-const nav = document.getElementById('nav');
-const menuIcon = document.querySelector('.menu-icon');
-
-function toggleMenu() {
-  nav.classList.toggle('active');
-  menuIcon.classList.toggle('active');
-}
-
-function hideMenu() {
-  nav.classList.remove('active');
-  menuIcon.classList.remove('active');
-}
+// Event Listener for scroll event
+window.addEventListener("scroll", checkScroll);
