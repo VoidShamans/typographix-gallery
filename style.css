@@ -51,11 +51,17 @@ nav {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 180px);
-  grid-gap: 5px;
+  gap: 5px;
   margin: 20px auto;
   padding: 20px;
   max-width: 1600px;
 }
+
+.item {
+  position: relative;
+  overflow: hidden;
+}
+
 
 .item1 {
   grid-area: 1 / 1 / 4 / 2;
@@ -94,6 +100,28 @@ img {
   object-fit: cover;
   display: block;
   cursor: pointer;
+  transition: transform 0.3s ease;
+
+}
+
+.item:hover img {
+  transform: scale(1.05);
+}
+
+.caption {
+  position: absolute;
+  bottom: -100%;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  transition: bottom 0.3s ease;
+}
+
+.item:hover .caption {
+  bottom: 0;
 }
 
 .modal {
@@ -113,7 +141,18 @@ img {
     max-width: 90%;
     max-height: 90%;
     object-fit: cover;
+    transform: scale(0.7);
+    opacity: 0;
+    transition:
+      transform 0.5s ease-in-out,
+      opacity 0.5s ease-in-out;
   }
+
+  .modal img.reveal {
+    transform: scale(1);
+    opacity: 1;
+  }
+
 /* Footer */
 
 footer {
@@ -135,7 +174,7 @@ footer {
   transition: color 0.3s;
   font-size: 1.5rem;
 }
-.social-icons a :hover {
+.social-icons a:hover {
   color: hsl(0, 0%, 50%);
 }
 
@@ -166,7 +205,7 @@ footer {
   }
 }
 
-/* Smartphone verical */
+/* Smartphone vertical */
 @media screen and (max-width: 600px) {
   nav {
     flex-direction: column;
